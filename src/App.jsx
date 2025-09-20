@@ -14,6 +14,7 @@ import Js from './components/learn/Js.jsx';
 import ReactDoc from './components/learn/ReactDoc.jsx';
 import Notes from './components/learn/Notes.jsx';
 import Todo from './components/learn/Todo.jsx';
+import AppFilm from './components/AppFilm.jsx';
 
 const { Content } = Layout;
 
@@ -36,6 +37,8 @@ export default function App() {
             {/* <Route path="notes" element={<Notes />} /> */}
             <Route path="todo" element={<Todo />} />
           </Route>
+          <Route path="/film/*" element={<AppFilm />} />
+
 
 
           {/* Auth */}

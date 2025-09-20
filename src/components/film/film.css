@@ -1,0 +1,242 @@
+/* Layout */
+.film-layout {
+    min-height: 100vh;
+    background: #656567;
+}
+
+
+.film-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #625787;
+    padding: 0 24px;
+    /* -----Chỉnh header về giữa------- */
+    justify-content: center;
+}
+
+.film-brand {
+    font-weight: 800;
+    font-size: 22px;
+    color: #e6f4ff;
+    text-decoration: none;
+}
+
+.film-search {
+    max-width: 520px;
+    flex: 1;
+}
+
+.film-fav {
+    background: #1f2430;
+    color: #e6f4ff;
+    border: none;
+}
+
+.film-badge {
+    margin-left: 6px;
+    background: #1677ff;
+    color: #fff;
+    border-radius: 999px;
+    padding: 0 6px;
+}
+
+.film-navbar {
+    background: #ffffff;
+    padding: 0 16px;
+    /* kéo thanh menu về giữ */
+    justify-items: center;
+}
+
+.film-content {
+    padding: 24px 0;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.film-footer {
+    text-align: center;
+    padding: 5px 0;
+    color: #000000;
+    background: #ffffff;
+}
+
+/* Home */
+.film-section {
+    margin-bottom: 28px;
+}
+
+.film-section-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 6px 8px 12px;
+}
+
+.film-section-title {
+    color: #fff;
+    margin: 0;
+}
+
+.film-card {
+    background: #1c1f26;
+    color: #ffffff;
+    border: 1px solid #2a2e36;
+}
+
+.film-card .ant-card-meta-title {
+    color: #fff;
+}
+
+
+/* Detail */
+.film-detail {
+    color: #cfd3dc;
+}
+
+.film-sidebar .film-sideitem {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: #cfd3dc;
+}
+
+.film-sideitem img {
+    width: 72px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.film-episodes {
+    margin-top: 14px;
+}
+
+.film-episodes-head {
+    margin-bottom: 8px;
+}
+
+.film-episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    gap: 8px;
+}
+
+.film-ep-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    background: #20232b;
+    color: #cfd3dc;
+    border-radius: 8px;
+    border: 1px solid #2a2e36;
+    text-decoration: none;
+}
+
+.film-ep-btn:hover {
+    border-color: #6b7280;
+}
+
+/* Watch */
+.film-watch {
+    color: #cfd3dc;
+}
+
+.film-player-wrap {
+    background: #111318;
+    padding: 16px;
+    border-radius: 10px;
+}
+
+.film-player {
+    position: relative;
+    width: 1000px;
+    padding-top: 56.25%;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+}
+
+.film-player iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.film-player-actions {
+    margin-top: 10px;
+}
+
+.film-watch-meta {
+    margin-top: 16px;
+    background: #1c1f26;
+    border: 1px solid #2a2e36;
+    color: white;
+}
+.film-watch-meta .title {
+    color: white;
+}
+
+.film-watch-meta .tag-hd{
+    margin-bottom: 10px;
+}
+.film-ep-btn.is-active {
+    background: #1677ff;
+    color: #fff;
+    border-color: #1677ff;
+}
+/* ------------------------------------------------------------ */
+/* Bỏ padding body để không còn dải trống giữa cover và actions */
+.film-card .ant-card-body { padding: 0; }
+
+/* Cover & overlay title */
+.film-card-cover {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+.film-card-cover img {
+  width: 100%;
+  height: 310px;               /* hoặc 100% nếu muốn co theo card */
+  object-fit: cover;
+  display: block;
+  transition: transform .25s ease;
+}
+.film-card:hover .film-card-cover img {
+  transform: scale(1.03);
+}
+
+/* Title đè lên ảnh (đẩy lên trên phần cover) */
+.film-card-title {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 10px 12px;
+  color: #fff;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 45%, rgba(0,0,0,.75) 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.film-card-name {
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+
+}
+.film-card-duration {
+  font-size: 12px;
+  opacity: .85;
+}
+
+/* Actions */
+.film-card .ant-card-actions {
+  background: #f5f6fa;
+  border-top: 1px solid #e5e7eb;
+}
+.film-card .ant-card-actions > li { padding: 8px 10px; }

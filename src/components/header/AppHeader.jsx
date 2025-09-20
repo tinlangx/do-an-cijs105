@@ -5,12 +5,16 @@ import { useNavigate } from 'react-router-dom';        // ← thêm
 import { useAuth } from '../../auth/AuthContext.jsx';
 import Clock from './Clock.jsx';
 import './header.css';
-
 const { Header } = Layout;
 
 const AppHeader = () => {
   const { user, isAuthed, logout } = useAuth();
   const navigate = useNavigate();                      // ← thêm
+  const handleLogout = async () => {
+    await logout();                        // xoá state + localStorage
+    navigate('/login', { replace: true }); // điều hướng ngay
+  };
+
 
   return (
     <Header className="app-header">
@@ -33,7 +37,7 @@ const AppHeader = () => {
             <Typography.Text className="hello">
               Xin chào, <b>{user.name}</b>
             </Typography.Text>
-            <Button onClick={logout}>Log out</Button>
+            <Button onClick={handleLogout}>Log out</Button>
           </Space>
         )}
       </div>

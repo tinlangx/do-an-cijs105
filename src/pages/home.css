@@ -1,0 +1,122 @@
+/* src/pages/home.css */
+
+/* ===== Tone & spacing chung ===== */
+:root {
+    --home-maxw: 1080px;
+    /* bề rộng tối đa của card Home */
+    --home-gap: 16px;
+    /* khoảng cách chung */
+    --home-radius: 14px;
+    /* bo góc */
+    --home-shadow: 0 8px 24px rgba(0, 0, 0, .06);
+    --home-shadow-hover: 0 10px 28px rgba(0, 0, 0, .10);
+}
+
+/* Card “khung” chính */
+.home-container.ant-card {
+    width: 100%;
+    max-width: var(--home-maxw);
+    margin: 18px auto;
+    border-radius: var(--home-radius);
+    box-shadow: var(--home-shadow);
+    border: none;
+    overflow: hidden;
+    transition: box-shadow .2s ease, transform .15s ease;
+    background: linear-gradient(180deg, #ffffff 0%, #fafbff 100%);
+    margin-top: 200px;
+
+}
+
+.home-container.ant-card:hover {
+    box-shadow: var(--home-shadow-hover);
+    transform: translateY(-1px);
+}
+
+/* Bên trong Card */
+.home-container .ant-card-body {
+    padding: 18px 22px 26px;
+    text-align: center;
+}
+
+/* Dòng chào */
+.home-container .ant-typography,
+.home-container p {
+    margin: 0 0 10px 0;
+    color: #1f2937;
+    font-size: 16px;
+}
+
+.home-container b {
+    color: #111827;
+}
+
+/* Căn Space cho cụm nút */
+.home-container .ant-space {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: var(--home-gap);
+    flex-wrap: wrap;
+}
+
+/* ===== Nút hành động ===== */
+.lean-btn,
+.film-btn {
+    min-width: 180px;
+    height: 38px !important;
+    padding: 0 16px !important;
+    border-radius: 999px !important;
+    /* pill */
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 112, 243, .12);
+    transition: transform .12s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+/* Nút “Vào khu học tập” – xanh primary */
+.lean-btn.ant-btn-primary {
+    background: linear-gradient(135deg, #1677ff, #3b82f6) !important;
+    border: none !important;
+}
+
+.lean-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.02);
+    box-shadow: 0 6px 16px rgba(22, 119, 255, .25);
+}
+
+/* Nút “Vào web xem phim” – tím nhẹ để khác biệt */
+.film-btn.ant-btn-primary {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9) !important;
+    border: none !important;
+}
+
+.film-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+    box-shadow: 0 6px 16px rgba(109, 40, 217, .25);
+}
+
+/* Icon nhỏ trước text (nếu dùng emoji vẫn đẹp) */
+.film-btn::before {
+    /* content: "🎬"; */
+    font-size: 16px;
+    margin-right: 6px;
+    transform: translateY(1px);
+}
+
+/* Responsive – bớt rộng ở màn nhỏ */
+@media (max-width: 576px) {
+    .home-container.ant-card {
+        margin: 12px auto;
+    }
+
+    .lean-btn,
+    .film-btn {
+        min-width: 160px;
+        height: 36px !important;
+    }
+}
