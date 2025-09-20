@@ -1,0 +1,114 @@
+/* Layout trong AppShell */
+.app-shell {
+    min-height: calc(100vh - 64px);
+    /* trừ chiều cao header */
+    background: #f5f5f5;
+}
+
+.app-sider {
+    background: #fff;
+    border-right: 1px solid #f0f0f0;
+}
+
+.app-content {
+    padding: 24px;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Card trang con */
+/* .page-card { } */
+
+/* Notes */
+.notes-input textarea {
+    resize: vertical;
+}
+
+/* Todo */
+/* .todo-input input { } */
+.todo-done {
+    text-decoration: line-through;
+    opacity: 0.65;
+}
+
+/* -----HTML------ */
+.lesson-bottom-cta {
+
+    /* Quiz */
+    .quiz-item {
+        padding: 12px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+    }
+
+    .quiz-missing {
+        border-color: #ff4d4f;
+        /* đỏ cảnh báo */
+        background: #fff1f0;
+    }
+
+    .lesson-bottom-cta {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* -----HTML------ */
+.ant-modal-content {
+    text-align: center;
+}
+
+/* ------------ */
+/* Modal quiz: chiếm vừa màn hình, body cuộn nội dung */
+.quiz-modal .ant-modal {
+    max-width: 900px;
+    width: 90vw;
+    /* co theo màn hình nhỏ */
+}
+
+.quiz-modal .ant-modal-content {
+    max-height: 90vh;
+    /* đảm bảo tổng chiều cao không vượt viewport */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Giảm top/bottom khi màn hình thấp */
+@media (max-height: 700px) {
+    .quiz-modal .ant-modal-content {
+        max-height: 94vh;
+    }
+}
+
+/* (đã có) khung báo thiếu và item quiz */
+.quiz-item {
+    padding: 12px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+}
+
+.quiz-missing {
+    border-color: #ff4d4f;
+    background: #fff1f0;
+}
+
+/* ===== Sticky action bar ở đáy modal ===== */
+.quiz-modal .quiz-actions {
+  position: sticky;
+  bottom: 0;                 /* bám đáy phần body đang cuộn */
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+  background: #fff;          /* phủ nền để không thấy nội dung phía sau */
+  padding: 12px 0;           /* thoáng tay bấm */
+  border-top: 1px solid #f0f0f0;
+  margin-top: 8px;           /* tách nhẹ khỏi nội dung trên */
+  justify-content: center;
+}
+
+/* Khi đã chấm điểm: căn hai bên (nút trái, điểm bên phải) */
+.quiz-modal .quiz-actions--done {
+  justify-content: center;
+  width: 100%;
+}
