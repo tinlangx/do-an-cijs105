@@ -89,7 +89,7 @@ export default function Home() {
         <section key={cat.key} className="film-section">
           <div className="film-section-head">
             <Title level={4} className="film-section-title">{cat.name}</Title>
-            <Tag color="purple">Mới nhất</Tag>
+            <Tag color="purple">New</Tag>
           </div>
 
           <Row gutter={[16, 16]}>

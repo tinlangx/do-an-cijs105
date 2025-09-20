@@ -30,7 +30,7 @@ export default function FilmDetail() {
           <div style={{ marginBottom: 8 }}>
             {film.tags.map(t => <Tag key={t}>{t}</Tag>)}
           </div>
-          <Paragraph>{film.description}</Paragraph>
+          <Paragraph className="film-detail-des">{film.description}</Paragraph>
 
           <div className="film-episodes">
             <div className="film-episodes-head">

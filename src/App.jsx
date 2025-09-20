@@ -12,7 +12,6 @@ import Html from './components/learn/Html.jsx';
 import Css from './components/learn/Css.jsx';
 import Js from './components/learn/Js.jsx';
 import ReactDoc from './components/learn/ReactDoc.jsx';
-import Notes from './components/learn/Notes.jsx';
 import Todo from './components/learn/Todo.jsx';
 import AppFilm from './components/AppFilm.jsx';
 
@@ -24,6 +23,7 @@ export default function App() {
       <AppHeader />
       <Content style={{ padding: 0, margin: 0 }}>
         <Routes>
+          
           {/* Trang sau đăng nhập: HOME */}
           <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
 
@@ -34,12 +34,10 @@ export default function App() {
             <Route path="css" element={<Css />} />
             <Route path="js" element={<Js />} />
             <Route path="react" element={<ReactDoc />} />
-            {/* <Route path="notes" element={<Notes />} /> */}
             <Route path="todo" element={<Todo />} />
           </Route>
-          <Route path="/film/*" element={<AppFilm />} />
-
-
+          {/* Khu xem phim  */}
+          <Route path="/film/*" element={<ProtectedRoute><AppFilm /></ProtectedRoute>} />
 
           {/* Auth */}
           <Route
