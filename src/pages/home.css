@@ -1,122 +1,216 @@
-/* src/pages/home.css */
-
-/* ===== Tone & spacing chung ===== */
-:root {
-    --home-maxw: 1080px;
-    /* bề rộng tối đa của card Home */
-    --home-gap: 16px;
-    /* khoảng cách chung */
-    --home-radius: 14px;
-    /* bo góc */
-    --home-shadow: 0 8px 24px rgba(0, 0, 0, .06);
-    --home-shadow-hover: 0 10px 28px rgba(0, 0, 0, .10);
+/* Canvas rộng + nền */
+.home-wrap {
+    max-width: 1200px;
+    /* mở rộng trang */
+    margin: 24px auto;
+    padding: 0 16px 40px;
 }
 
-/* Card “khung” chính */
-.home-container.ant-card {
-    width: 100%;
-    max-width: var(--home-maxw);
-    margin: 18px auto;
-    border-radius: var(--home-radius);
-    box-shadow: var(--home-shadow);
-    border: none;
-    overflow: hidden;
-    transition: box-shadow .2s ease, transform .15s ease;
+/* HERO */
+.home-hero {
     background: linear-gradient(180deg, #ffffff 0%, #fafbff 100%);
-    margin-top: 200px;
-
+    border-radius: 18px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, .06);
+    padding: 26px 28px;
+    /* margin-bottom: 22px; */
+    margin-top: 66px;
 }
 
-.home-container.ant-card:hover {
-    box-shadow: var(--home-shadow-hover);
-    transform: translateY(-1px);
+.home-title {
+    letter-spacing: .2px;
+    margin-bottom: 6px !important;
 }
 
-/* Bên trong Card */
-.home-container .ant-card-body {
-    padding: 18px 22px 26px;
-    text-align: center;
+.home-sub {
+    color: #667085;
+    font-size: 15px;
+    margin: 0;
 }
 
-/* Dòng chào */
-.home-container .ant-typography,
-.home-container p {
-    margin: 0 0 10px 0;
-    color: #1f2937;
-    font-size: 16px;
+/* Buttons pill */
+.btn-pill {
+    height: 44px;
+    border-radius: 999px !important;
+    padding: 0 18px;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
 }
 
-.home-container b {
-    color: #111827;
+.btn-learn {
+    background: #4f7cff;
+    border-color: #4f7cff;
 }
 
-/* Căn Space cho cụm nút */
-.home-container .ant-space {
-    margin-top: 10px;
+.btn-film {
+    background: #8a5cff;
+    border-color: #8a5cff;
+}
+
+.btn-game {
+    background: #1f2937;
+    color: #fff;
+    border-color: #1f2937;
+}
+
+.btn-pill:hover {
+    filter: brightness(1.05);
+}
+
+/* quick stats */
+.home-stats {
     display: flex;
-    justify-content: center;
-    gap: var(--home-gap);
+    gap: 24px;
+    margin-top: 10px;
     flex-wrap: wrap;
 }
 
-/* ===== Nút hành động ===== */
-.lean-btn,
-.film-btn {
-    min-width: 180px;
-    height: 38px !important;
-    padding: 0 16px !important;
-    border-radius: 999px !important;
-    /* pill */
-    font-weight: 600 !important;
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    box-shadow: 0 4px 12px rgba(0, 112, 243, .12);
-    transition: transform .12s ease, box-shadow .2s ease, filter .2s ease;
+.home-stats .ant-statistic {
+    min-width: 160px;
 }
 
-/* Nút “Vào khu học tập” – xanh primary */
-.lean-btn.ant-btn-primary {
-    background: linear-gradient(135deg, #1677ff, #3b82f6) !important;
-    border: none !important;
+/* Hero art */
+.hero-art {
+    position: relative;
+    height: 230px;
+    display: grid;
+    place-items: center;
 }
 
-.lean-btn:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.02);
-    box-shadow: 0 6px 16px rgba(22, 119, 255, .25);
+.blob {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    filter: blur(24px);
+    opacity: .6;
 }
 
-/* Nút “Vào web xem phim” – tím nhẹ để khác biệt */
-.film-btn.ant-btn-primary {
-    background: linear-gradient(135deg, #7c3aed, #6d28d9) !important;
-    border: none !important;
+.blob.a {
+    background: #a78bfa;
+    top: -8px;
+    right: 28px;
 }
 
-.film-btn:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.03);
-    box-shadow: 0 6px 16px rgba(109, 40, 217, .25);
+.blob.b {
+    background: #60a5fa;
+    bottom: -10px;
+    left: 20px;
 }
 
-/* Icon nhỏ trước text (nếu dùng emoji vẫn đẹp) */
-.film-btn::before {
-    /* content: "🎬"; */
-    font-size: 16px;
-    margin-right: 6px;
-    transform: translateY(1px);
+.hero-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 320px;
+    border-radius: 16px;
+    background: #111827;
+    color: #fff;
+    padding: 16px 18px;
+    box-shadow: 0 20px 40px rgba(17, 24, 39, .35);
 }
 
-/* Responsive – bớt rộng ở màn nhỏ */
+.hero-list {
+    margin: 0 0 0 18px;
+    padding: 0;
+}
+
+/* ACTION GRID */
+.home-actions {
+    margin-top: 18px;
+}
+
+.home-card {
+    border-radius: 16px;
+    transition: transform .12s ease, box-shadow .12s ease;
+    cursor: pointer;
+}
+
+.home-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, .10);
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.card-icon.learn {
+    background: #eef2ff;
+}
+
+.card-icon.film {
+    background: #f3e8ff;
+}
+
+.card-icon.game {
+    background: #e5e7eb;
+}
+
+.btn-ghost {
+    margin-top: 8px;
+    border-radius: 999px;
+    padding: 0 16px;
+    height: 36px;
+}
+
+/* CONTINUE */
+/* .home-continue {
+    margin-top: 6px;
+}
+
+.continue-item {
+    border-radius: 14px;
+    cursor: pointer;
+    transition: transform .1s ease, box-shadow .1s ease;
+}
+
+.continue-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .08);
+}
+
+.continue-title {
+    font-weight: 700;
+}
+
+.continue-sub {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.dot.html {
+    background: #60a5fa;
+}
+
+.dot.film {
+    background: #a78bfa;
+}
+
+.dot.game {
+    background: #22c55e;
+} */
+
+/* Responsive tweak */
 @media (max-width: 576px) {
-    .home-container.ant-card {
-        margin: 12px auto;
+    .home-hero {
+        padding: 18px;
     }
 
-    .lean-btn,
-    .film-btn {
-        min-width: 160px;
-        height: 36px !important;
+    .home-stats {
+        gap: 14px;
     }
 }

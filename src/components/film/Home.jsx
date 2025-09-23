@@ -65,9 +65,17 @@ export default function Home() {
           {results.length === 0 ? (
             <Empty description="Không tìm thấy phim phù hợp" />
           ) : (
-            <Row gutter={[16, 16]}>
+            <Row gutter={[16, 16]} justify="start" wrap align="top">
               {results.map((f) => (
-                <Col xs={12} sm={8} md={6} lg={6} xl={4} key={f.id}>
+                <Col
+                  key={f.id}
+                  xs={24}
+                  sm={12}
+                  md={8}
+                  lg={6}
+                  xl={4}
+                  className="film-col"
+                >
                   <FilmCard f={f} onWatch={goWatch} />
                 </Col>
               ))}

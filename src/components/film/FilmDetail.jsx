@@ -25,7 +25,7 @@ export default function FilmDetail() {
         </Col>
 
         <Col xs={24} md={16}>
-          <Title level={3}>{film.title}</Title>
+          <Title level={3} style={{color:'white', fontWeight:'600', fontSize:'35px'}}>{film.title}</Title>
           <Paragraph type="secondary">⏱ {film.duration}</Paragraph>
           <div style={{ marginBottom: 8 }}>
             {film.tags.map(t => <Tag key={t}>{t}</Tag>)}

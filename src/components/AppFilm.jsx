@@ -22,32 +22,35 @@ export default function AppFilm() {
     const selectedKey = menuItems.find(m => pathname.startsWith(m.key))?.key || '';
 
     return (
-        <Layout className="film-layout">
+        <Layout className="film-layout" style={{ minHeight: '100vh' }}>
             <Header className="film-header">
-                <Link to="/film" className="film-brand">Hoạt Hình 3D</Link>
-                <Input.Search
-                    placeholder="Nhập tên phim cần tìm..."
-                    allowClear
-                    className="film-search"
-                    onSearch={(text) => {
-                        const query = (text || '').trim();
-                        if (query) navigate(`/film?q=${encodeURIComponent(query)}`);
-                        else navigate('/film');
-                    }}
-                />
-                <Button className="film-fav" size="middle">
-                    🎬 Phim Yêu Thích <span className="film-badge"></span>
-                </Button>
-            </Header>
+                <div className="film-topbar">
+                    {/* Brand */}
+                    <Link to="/film" className="film-brand">Hoạt Hình 3D</Link>
 
-            <div className="film-navbar">
-                <Menu
-                    mode="horizontal"
-                    items={menuItems}
-                    selectedKeys={[selectedKey]}
-                    onClick={({ key }) => navigate(key)}
-                />
-            </div>
+                    {/* Menu phân loại */}
+                    <Menu
+                        mode="horizontal"
+                        selectedKeys={[selectedKey]}
+                        className="film-menu"
+                        items={menuItems}
+                        onClick={({ key }) => navigate(key)}
+                    />
+
+                    {/* Tìm kiếm (bên phải) */}
+                    <Input.Search
+                        allowClear
+                        className="film-search"
+                        size='large'
+                        placeholder="Nhập tên phim cần tìm…"
+                        onSearch={(text) => {
+                            const q = (text || '').trim();
+                            if (q) navigate(`/film?q=${encodeURIComponent(q)}`);
+                            else navigate('/film');
+                        }}
+                    />
+                </div>
+            </Header>
 
             <Content className="film-content">
                 <Routes>

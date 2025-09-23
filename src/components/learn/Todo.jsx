@@ -60,7 +60,7 @@ export default function Todo() {
 
   return (
     <div className="todo-wrap">
-      <Typography.Title level={2} className="todo-title">#todo</Typography.Title>
+      <Typography.Title level={2} className="todo-title">TO-DO</Typography.Title>
 
       <Tabs
         centered

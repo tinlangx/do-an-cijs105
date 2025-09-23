@@ -14,6 +14,8 @@ import Js from './components/learn/Js.jsx';
 import ReactDoc from './components/learn/ReactDoc.jsx';
 import Todo from './components/learn/Todo.jsx';
 import AppFilm from './components/AppFilm.jsx';
+import AppGame from './components/AppGame.jsx';
+
 
 const { Content } = Layout;
 
@@ -38,6 +40,9 @@ export default function App() {
           </Route>
           {/* Khu xem phim  */}
           <Route path="/film/*" element={<ProtectedRoute><AppFilm /></ProtectedRoute>} />
+
+           {/* Khu chơi game  */}
+          <Route path="/game" element={<ProtectedRoute><AppGame /></ProtectedRoute>} />
 
           {/* Auth */}
           <Route

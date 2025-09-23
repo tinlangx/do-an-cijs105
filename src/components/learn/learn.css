@@ -95,20 +95,140 @@
 
 /* ===== Sticky action bar ở đáy modal ===== */
 .quiz-modal .quiz-actions {
-  position: sticky;
-  bottom: 0;                 /* bám đáy phần body đang cuộn */
-  z-index: 2;
-  display: flex;
-  gap: 8px;
-  background: #fff;          /* phủ nền để không thấy nội dung phía sau */
-  padding: 12px 0;           /* thoáng tay bấm */
-  border-top: 1px solid #f0f0f0;
-  margin-top: 8px;           /* tách nhẹ khỏi nội dung trên */
-  justify-content: center;
+    position: sticky;
+    bottom: 0;
+    /* bám đáy phần body đang cuộn */
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+    background: #fff;
+    /* phủ nền để không thấy nội dung phía sau */
+    padding: 12px 0;
+    /* thoáng tay bấm */
+    border-top: 1px solid #f0f0f0;
+    margin-top: 8px;
+    /* tách nhẹ khỏi nội dung trên */
+    justify-content: center;
 }
 
 /* Khi đã chấm điểm: căn hai bên (nút trái, điểm bên phải) */
 .quiz-modal .quiz-actions--done {
-  justify-content: center;
-  width: 100%;
+    justify-content: center;
+    width: 100%;
+}
+
+
+/* ----------------CSS cho AppLearn-------------------- */
+/* Khung rộng giống Home */
+.learn-wrap {
+    max-width: 1200px;
+    margin: 24px auto;
+    padding: 0 16px 40px;
+}
+
+/* HERO (thẻ mở đầu) */
+.learn-hero {
+    background: linear-gradient(180deg, #ffffff 0%, #fafbff 100%);
+    border-radius: 18px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, .06);
+    padding: 26px 28px;
+    margin-bottom: 22px;
+}
+
+.learn-title {
+    margin: 0 0 6px 0 !important;
+    letter-spacing: .2px;
+}
+
+.learn-sub {
+    color: #667085;
+    font-size: 15px;
+    margin: 0;
+}
+
+/* Nút dạng pill (tái sử dụng phong cách Home) */
+.btn-pill {
+    height: 44px;
+    border-radius: 999px !important;
+    padding: 0 18px;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+}
+
+.btn-learn {
+    background: #4f7cff;
+    border-color: #4f7cff;
+}
+
+.btn-pill:hover {
+    filter: brightness(1.05);
+}
+
+/* SHELL: sidebar + content */
+.learn-shell {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 18px;
+}
+
+/* Sidebar */
+.learn-sidebar {
+    position: sticky;
+    top: 84px;
+    align-self: start;
+}
+
+.learn-menu {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+    padding: 8px;
+}
+
+.learn-menu-item {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 12px;
+    color: #111827;
+    font-weight: 600;
+    margin: 4px 0;
+    transition: background .12s ease, transform .06s ease;
+}
+
+.learn-menu-item:hover {
+    background: #f5f7ff;
+    transform: translateX(2px);
+}
+
+.learn-menu-item.is-active {
+    background: #eef2ff;
+    color: #304ffe;
+    box-shadow: inset 0 0 0 2px #dbe3ff;
+}
+
+/* Nội dung bên phải */
+.learn-content {
+    min-width: 0;
+}
+
+.learn-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, .06);
+    padding: 20px 22px;
+    min-height: 520px;
+    /* tạo cảm giác “khung” cố định */
+    overflow: hidden;
+    /* chống tràn khi section có ảnh/code */
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .learn-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .learn-sidebar {
+        position: static;
+    }
 }

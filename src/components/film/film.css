@@ -1,22 +1,13 @@
-/* Layout */
-.film-layout {
-    min-height: 100vh;
-    background: #656567;
+:root {
+    --containerW: 1200px;
+    /* đổi 1 chỗ là mọi nơi khớp nhau */
+    --appHeaderH: 64px;
+    --filmHeaderH: 64px;
 }
 
-
-.film-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background: #625787;
-    padding: 0 24px;
-    /* -----Chỉnh header về giữa------- */
-    justify-content: center;
+/* Layout */
+.film-layout {
+    background: #656567;
 }
 
 .film-brand {
@@ -24,17 +15,6 @@
     font-size: 22px;
     color: #e6f4ff;
     text-decoration: none;
-}
-
-.film-search {
-    max-width: 520px;
-    flex: 1;
-}
-
-.film-fav {
-    background: #1f2430;
-    color: #e6f4ff;
-    border: none;
 }
 
 .film-badge {
@@ -45,12 +25,6 @@
     padding: 0 6px;
 }
 
-.film-navbar {
-    background: #ffffff;
-    padding: 0 16px;
-    /* kéo thanh menu về giữ */
-    justify-items: center;
-}
 
 .film-content {
     padding: 24px 0;
@@ -66,6 +40,10 @@
 }
 
 /* Home */
+.film-col{
+  min-width: 240px;      /* để 1–2 item không bị bóp */
+  /* flex: 0 0 240px;        */  /* ngăn shrink, base = 240px */
+}
 .film-section {
     margin-bottom: 28px;
 }
@@ -98,9 +76,11 @@
 .film-detail {
     color: #cfd3dc;
 }
-.film-detail-des{
+
+.film-detail-des {
     color: white;
 }
+
 .film-sidebar .film-sideitem {
     display: flex;
     gap: 10px;
@@ -257,4 +237,143 @@
 
 .film-card .ant-card-actions>li {
     padding: 8px 10px;
+}
+
+.film-list{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: flex-start;     /* rất quan trọng: không dùng space-between */
+}
+
+.film-list .film-card{
+  flex: 0 0 240px;                 /* không shrink, basis = 240px */
+  max-width: 240px;                /* để không vượt quá */
+}
+
+/* ------------------------------- */
+/* ----- Layout chung của trang Film ----- */
+.film-layout {
+    min-height: 100%;
+}
+
+/* Header phụ của trang film (nằm dưới AppHeader chính) */
+.film-header {
+    position: sticky;
+    top: var(--appHeaderH);
+    z-index: 120;
+    /* cao hơn content/footer */
+    background: linear-gradient(180deg, #6f61a8 0%, #6b5aa6 100%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+    /* padding: 10px 16px; */
+    overflow: visible;
+    /* QUAN TRỌNG: để menu popup không bị cắt */
+}
+
+/* Bố cục 3 khối: brand | menu | search */
+.film-topbar {
+    max-width: var(--containerW);
+    /* = content */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 210px 1fr auto;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Brand */
+.film-brand {
+    color: #fff;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: .3px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* Menu phân loại */
+.film-menu {
+    background: transparent;
+    border-bottom: none !important;
+}
+
+.film-menu .ant-menu-item {
+    color: #eae7ff;
+    font-weight: 600;
+}
+
+.film-menu .ant-menu-item:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, .06);
+}
+
+.film-menu .ant-menu-item-selected {
+    color: #1d1b3a !important;
+    background: #fff !important;
+    border-radius: 999px;
+    margin: 6px 8px;
+    padding-inline: 14px !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+}
+
+.film-search .ant-input-affix-wrapper {
+    height: 40px;
+}
+
+/* Đẩy chữ trong input xuống một chút -> nhìn giống "padding-bottom: 10px" cho placeholder */
+.film-search .ant-input {
+    height: 40px;
+    margin-top: -8px;
+}
+
+.film-search .ant-input::placeholder {
+    color: #bfbfbf;
+    opacity: 1;
+}
+
+.film-search .ant-input-search-button {
+    height: 40px;
+    border-radius: 0 999px 999px 0 !important;
+}
+
+/* Nội dung */
+.film-content {
+    padding: 24px 0 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Trang tối thiểu = full chiều cao viewport - 2 header (chính + phụ) - padding đáy */
+    min-height: calc(100vh - var(--appHeaderH) - var(--filmHeaderH) - 48px);
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 1100px) {
+    .film-topbar {
+        grid-template-columns: 170px 1fr 300px;
+    }
+}
+
+@media (max-width: 920px) {
+    .film-topbar {
+        grid-template-columns: 170px 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .film-search {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 560px) {
+    .film-topbar {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    .film-brand {
+        text-align: center;
+    }
+
+    .film-menu {
+        justify-content: center;
+    }
 }
