@@ -1,10 +1,13 @@
 .todo-wrap {
   max-width: var(--w);
+  height: 800px;
   margin: 40px auto 80px;
   background: #fff;
   border-radius: 16px;
+  margin: 0;
   padding: 28px 24px 32px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+  /* overflow: visible; */
 }
 
 .todo-title {
@@ -18,7 +21,9 @@
   margin: 8px 0 12px;
 }
 
-.list { margin-top: 8px; }
+.list {
+  margin-top: 8px;
+}
 
 .task-item {
   display: flex;
@@ -28,7 +33,9 @@
   border-bottom: 1px solid #f1f1f1;
 }
 
-.task-item:last-child { border-bottom: none; }
+.task-item:last-child {
+  border-bottom: none;
+}
 
 .task-left {
   display: flex;
