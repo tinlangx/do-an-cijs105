@@ -1,6 +1,10 @@
+// src/auth/AuthContext.jsx
 import React, { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext(null);
+
+// Đổi sang URL server thật của bạn nếu khác
+const API_URL = import.meta.env.VITE_API_URL || 'mongodb+srv://tinlangx:1234566@mindx-web91.whzoamu.mongodb.net/';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
@@ -11,27 +15,41 @@ export const AuthProvider = ({ children }) => {
     }
   });
 
+  // values = { email, password } từ Form
   const login = async ({ email, password }) => {
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const found = users.find(u => u.email === email && u.password === password);
-    if (!found) throw new Error('Sai email hoặc mật khẩu');
-    const session = { id: found.id, name: found.name, email: found.email };
+    const res = await fetch(`${API_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || 'Sai email hoặc mật khẩu');
+    }
+
+    const session = data.user; // { id, name, email }
     localStorage.setItem('auth_user', JSON.stringify(session));
     setUser(session);
     return session;
   };
 
+  // values = { name, email, password } từ Form đăng ký
   const register = async ({ name, email, password }) => {
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    if (users.some(u => u.email === email)) throw new Error('Email đã tồn tại');
+    const res = await fetch(`${API_URL}/api/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password }),
+    });
 
-    const newUser = {
-      id: (crypto?.randomUUID?.() || String(Date.now())),
-      name, email, password
-    };
-    users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users));
-    const session = { id: newUser.id, name: newUser.name, email: newUser.email };
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || 'Đăng ký thất bại');
+    }
+
+    const session = data.user; // { id, name, email }
     localStorage.setItem('auth_user', JSON.stringify(session));
     setUser(session);
     return session;
@@ -43,7 +61,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthed: !!user, login, register, logout }}>
+    <AuthContext.Provider
+      value={{ user, isAuthed: !!user, login, register, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
