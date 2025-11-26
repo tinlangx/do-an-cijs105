@@ -3,8 +3,7 @@ import React, { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext(null);
 
-// Đổi sang URL server thật của bạn nếu khác
-const API_URL = import.meta.env.VITE_API_URL || 'mongodb+srv://tinlangx:1234566@mindx-web91.whzoamu.mongodb.net/';
+const API_URL = import.meta.env.VITE_API_URL || 'https://do-an-cijs105-be.vercel.app/';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
