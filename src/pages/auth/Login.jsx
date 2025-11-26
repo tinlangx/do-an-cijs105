@@ -16,6 +16,7 @@ const Login = () => {
       message.success('Đăng nhập thành công!');
       navigate('/', { replace: true });
     } catch (e) {
+      console.error(e);
       message.error(e.message || 'Đăng nhập thất bại');
     }
   };

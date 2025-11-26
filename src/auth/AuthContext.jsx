@@ -16,24 +16,17 @@ export const AuthProvider = ({ children }) => {
   });
 
   // values = { email, password } từ Form
-  const login = async (values) => {
-    const { email, password } = values;
+  const login = async ({ email, password }) => {
+    const res = await fetch(`${API_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
 
-    let res;
-    try {
-      res = await fetch(`${API_URL}/api/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-    } catch (err) {
-      console.error('Network login error:', err);
-      throw new Error('Không kết nối được server');
-    }
-
-    const data = await res.json().catch(() => ({}));
+    const data = await res.json();
 
     if (!res.ok) {
+      // BE trả 400 -> ném lỗi để Login.jsx catch
       throw new Error(data.message || 'Sai email hoặc mật khẩu');
     }
 
