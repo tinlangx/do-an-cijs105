@@ -3,7 +3,8 @@ import React, { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext(null);
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://do-an-cijs105-be.vercel.app/';
+// HARD-CODE backend để test cho chắc
+const API_URL = 'https://do-an-cijs105-be.vercel.app';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
@@ -15,14 +16,22 @@ export const AuthProvider = ({ children }) => {
   });
 
   // values = { email, password } từ Form
-  const login = async ({ email, password }) => {
-    const res = await fetch(`${API_URL}/api/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
+  const login = async (values) => {
+    const { email, password } = values;
 
-    const data = await res.json();
+    let res;
+    try {
+      res = await fetch(`${API_URL}/api/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+    } catch (err) {
+      console.error('Network login error:', err);
+      throw new Error('Không kết nối được server');
+    }
+
+    const data = await res.json().catch(() => ({}));
 
     if (!res.ok) {
       throw new Error(data.message || 'Sai email hoặc mật khẩu');
@@ -34,21 +43,29 @@ export const AuthProvider = ({ children }) => {
     return session;
   };
 
-  // values = { name, email, password } từ Form đăng ký
-  const register = async ({ name, email, password }) => {
-    const res = await fetch(`${API_URL}/api/auth/register`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password }),
-    });
+  // values = { name, email, password } từ Form
+  const register = async (values) => {
+    const { name, email, password } = values;
 
-    const data = await res.json();
+    let res;
+    try {
+      res = await fetch(`${API_URL}/api/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      });
+    } catch (err) {
+      console.error('Network register error:', err);
+      throw new Error('Không kết nối được server');
+    }
+
+    const data = await res.json().catch(() => ({}));
 
     if (!res.ok) {
       throw new Error(data.message || 'Đăng ký thất bại');
     }
 
-    const session = data.user; // { id, name, email }
+    const session = data.user;
     localStorage.setItem('auth_user', JSON.stringify(session));
     setUser(session);
     return session;
